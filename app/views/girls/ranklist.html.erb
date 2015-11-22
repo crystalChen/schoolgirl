@@ -1,0 +1,14 @@
+<table class="table table-striped">
+<h2 align="center">studentNo&nbsp;&nbsp;&nbsp;&nbsp;score</h2>
+<div style="background-color: #888888;text-align: center;font-size: large">
+<%
+    @girls.each do |girl|
+      %>
+         <%= girl.studentNo + "\t" + (girl.score.to_s[0,4])%>
+         <br>
+    <%
+    end
+%>
+</div>
+</table>
+<%= paginate @girls %>

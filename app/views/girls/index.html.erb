@@ -1,0 +1,31 @@
+<h1>Listing girls</h1>
+
+<table>
+  <tr>
+    <th>Studentno</th>
+    <th>Studentname</th>
+    <th>Img</th>
+    <th>Comment</th>
+    <th>Score</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @girls.each do |girl| %>
+  <tr>
+    <td><%= girl.studentNo %></td>
+    <td><%= girl.studentName %></td>
+    <td><%= girl.img %></td>
+    <td><%= girl.comment %></td>
+    <td><%= girl.score %></td>
+    <td><%= link_to 'Show', girl %></td>
+    <td><%= link_to 'Edit', edit_girl_path(girl) %></td>
+    <td><%= link_to 'Destroy', girl, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Girl', new_girl_path %>

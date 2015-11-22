@@ -1,0 +1,37 @@
+<%= form_for(@girl) do |f| %>
+  <% if @girl.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@girl.errors.count, "error") %> prohibited this girl from being saved:</h2>
+
+      <ul>
+      <% @girl.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :studentNo %><br />
+    <%= f.text_field :studentNo %>
+  </div>
+  <div class="field">
+    <%= f.label :studentName %><br />
+    <%= f.text_field :studentName %>
+  </div>
+  <div class="field">
+    <%= f.label :img %><br />
+    <%= f.text_field :img %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </div>
+  <div class="field">
+    <%= f.label :score %><br />
+    <%= f.text_field :score %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,44 @@
+<script type="text/javascript" xmlns="http://www.w3.org/1999/html">
+    var result = new Array();
+    var ids =<%=@studentnos%>;
+    var count = 0;
+    var pre_url = "http://codb.jxau.edu.cn/User/GetOnePhotoByCode/?Code=";
+    function showNextPK(obj){
+        var flag = 0;
+        if (obj.id == "girl2")  flag = 1;
+        result[2*count+flag] = ids[2*count];
+        result[2*count+(1+flag)%2] = ids[2*count+1];
+        count += 1;
+        var girl1 = document.getElementById("girl1");
+        var girl2 = document.getElementById("girl2");
+        girl1.src = pre_url + ids[2*count];
+        girl2.src = pre_url + ids[2*count+1];
+        if(count >= 3){
+            $.ajax({
+                method: "POST",
+                url: "calculate",
+                data: { result: result}
+            })
+                    .done(function( msg ) {
+                        self.location="../girls/ranklist";
+                    });
+        }
+    }
+</script>
+<div class="header" style="text-align: center">
+  <div style="text-align:center; line-height:80px"><h1>JXAU FACEMASH</h1></div>
+</div>
+<style>
+    .header{ background-color: darkred; height:80px;}
+</style>
+<!--<div style="background-color: darkred; height: 80px">-->
+   <!--<h1 style="text-align:center; height: 50px;"><b>JXAU FACEMASH!</b></h1>-->
+<!--</div>-->
+<h2 style="text-align:center; height: 30px;vertical-align: middle;">Where we let in for our looks? No. Will we be judged on them? Yes.  </h2>
+<h1 style="text-align:center; height: 30px;vertical-align: middle;">Who's Hotter? Click to Choose.</h1>
+
+<div style="text-align: center;height: 320px;line-height: 320px;width: 600px;margin: 0 auto;">
+  <img id="girl1" src="http://codb.jxau.edu.cn/User/GetOnePhotoByCode/?Code=<%=@studentnos[0]%>" style="  float: left;height: 320px;vertical-align: middle;" onclick="javascript:showNextPK(this);">
+  <label style="text-align: center;height: 320px;line-height: 320px;float: left;">OR</label>
+  <img id="girl2" src="http://codb.jxau.edu.cn/User/GetOnePhotoByCode/?Code=<%=@studentnos[1]%>" style="  float: left;height: 320px;vertical-align: middle;" onclick="javascript:showNextPK(this);">
+</div>
